@@ -1,0 +1,15 @@
+services:
+  server:
+    build:
+      context: .
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - PASSWORD=dev
+    volumes:
+      - './projects:/home/coder/project'
+      - './config:/config'
+    ports:
+      - '1337:8443'
+    restart: unless-stopped
