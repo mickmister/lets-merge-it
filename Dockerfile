@@ -5,4 +5,4 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN chsh -s /usr/bin/zsh coder
+RUN chsh -s /usr/bin/zsh abc
