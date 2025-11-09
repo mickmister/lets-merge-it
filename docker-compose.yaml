@@ -6,10 +6,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=UTC
-      - PASSWORD=dev
+      - PASSWORD=${CODE_PASSWORD}
     volumes:
-      - './projects:/home/coder/project'
-      - './config:/config'
+      - ./config:/config
+      - ./projects:/config/workspace
     ports:
-      - '1337:8443'
+      - "1337:8443"
     restart: unless-stopped
