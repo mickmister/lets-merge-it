@@ -4,5 +4,3 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends unzip zsh \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-RUN chsh -s /usr/bin/zsh abc
