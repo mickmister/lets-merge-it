@@ -1,0 +1,8 @@
+# SSH keys (sensitive)
+ssh-keys/
+
+# Container config and data
+config/
+
+# Projects directory
+projects/

@@ -10,6 +10,10 @@ services:
     volumes:
       - './projects:/home/coder/project'
       - './config:/config'
+      - './config-defaults/data/User/settings.json:/config/data/User/settings.json'
+      - './ssh-keys:/config/.ssh:ro'
     ports:
       - '1337:8443'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     restart: unless-stopped
