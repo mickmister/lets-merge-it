@@ -1,0 +1,14 @@
+{
+  "terminal.integrated.defaultProfile.linux": "host-ssh",
+  "terminal.integrated.profiles.linux": {
+    "host-ssh": {
+      "path": "/usr/bin/ssh",
+      "args": [
+        "-o", "StrictHostKeyChecking=no",
+        "-o", "UserKnownHostsFile=/dev/null",
+        "-i", "/config/.ssh/id_rsa",
+        "user@host.docker.internal"
+      ]
+    }
+  }
+}
