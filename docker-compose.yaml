@@ -32,7 +32,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy_config:/etc/caddy
       - caddy-data:/data
       - caddy-config:/config
     networks:
