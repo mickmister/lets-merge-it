@@ -1,7 +1,12 @@
 services:
-  server:
+  # VSCode Server (code-server)
+  # Note: The main app service has been moved to docker-compose.app.yaml
+  # for separate deployment as another resource in Coolify
+  code-server:
+    # platform: ${DOCKER_PLATFORM}
     build:
       context: .
+      dockerfile: Dockerfile.code-server
     environment:
       - PUID=1000
       - PGID=1000
@@ -11,6 +16,39 @@ services:
     volumes:
       - ./config:/config
       - ./projects:/config/workspace
-    ports:
-      - "1337:8443"
+      # # Share the app source with code-server for editing
+      # - ./src:/config/workspace/src
+    networks:
+      - app-network
     restart: unless-stopped
+    # Don't expose port externally - Caddy will handle this
+    expose:
+      - "8443"
+
+  # Caddy reverse proxy - serves both app (on host) and code-server on same port
+  caddy:
+    # platform: ${DOCKER_PLATFORM}
+    image: caddy:2-alpine
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - app-network
+    extra_hosts:
+      # Enable access to host machine from container
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - code-server
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  caddy-data:
+  caddy-config:
+  springboard-data:

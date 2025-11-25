@@ -1,0 +1,21 @@
+{
+  "name": "lets-merge-it",
+  "version": "1.0.0",
+  "description": "A simple Hono app",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --import tsx src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "hono": "^4.6.14",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
+  },
+  "author": "",
+  "license": "MIT"
+}

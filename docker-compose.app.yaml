@@ -1,0 +1,29 @@
+services:
+  # Main application service
+  app:
+    # platform: ${DOCKER_PLATFORM}
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    environment:
+      - NODE_ENV=production
+      - PORT=1340
+      # GitHub OAuth credentials
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      # Public site URL - update this to your actual domain in Coolify
+      - PUBLIC_SITE_URL=${PUBLIC_SITE_URL:-http://localhost:1340}
+    volumes:
+      # Mount data directory for persistent storage
+      - ./data:/app/data
+      # Mount .springboard state directory
+      - springboard-data:/root/.springboard
+    restart: unless-stopped
+    ports:
+      - "1340:1340"
+    # Note: When deploying to Coolify, enable "Connect to Predefined Network"
+    # if this service needs to communicate with other resources in the same environment
+    # (e.g., the code-server from the other docker-compose stack)
+
+volumes:
+  springboard-data:
