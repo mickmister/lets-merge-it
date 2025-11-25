@@ -15,7 +15,7 @@ services:
       - SUDO_PASSWORD=${SUDO_PASSWORD}
     volumes:
       - ./config:/config
-      - ./projects:/config/workspace
+      - project-data:/config/workspace
       # # Share the app source with code-server for editing
       # - ./src:/config/workspace/src
     networks:
@@ -51,4 +51,4 @@ networks:
 volumes:
   caddy-data:
   caddy-config:
-  springboard-data:
+  project-data:
