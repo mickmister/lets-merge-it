@@ -32,7 +32,7 @@ app.get('/', (c) => {
       </style>
     </head>
     <body>
-      <iframe src="http://localhost:3001/?folder=${encodeURIComponent(folder)}" title="Code Editor"></iframe>
+      <iframe src="/?folder=${encodeURIComponent(folder)}" title="Code Editor"></iframe>
     </body>
     </html>
   `)
